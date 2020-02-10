@@ -174,6 +174,11 @@ spec:
               scheme: "{{ .Values.tls.enabled | ternary "HTTPS" "HTTP" }}"
               path: /solr/admin/info/system
               port: {{ .Values.port }}
+{{ if not (eq .Values.httpBasicAuthHeader "") }}
+              httpHeaders:
+              - name: Authorization
+                value: {{ .Values.httpBasicAuthHeader }}
+{{ end }}
           readinessProbe:
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
@@ -181,6 +186,11 @@ spec:
               scheme: "{{ .Values.tls.enabled | ternary "HTTPS" "HTTP" }}"
               path: /solr/admin/info/system
               port: {{ .Values.port }}
+{{ if not (eq .Values.httpBasicAuthHeader "") }}
+              httpHeaders:
+              - name: Authorization
+                value: {{ .Values.httpBasicAuthHeader }}
+{{ end }}
           volumeMounts:
             - name: {{ template "solr.pvc-name" . }}
               mountPath: /opt/solr/server/home

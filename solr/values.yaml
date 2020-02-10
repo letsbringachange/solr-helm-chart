@@ -22,6 +22,10 @@ image:
   tag: 7.6.0
   pullPolicy: Always
 
+# SHA value of the basic auth header if Basic auth is enabled on Solr
+# Default value for solr / SolrRocks. Please change as needed.
+httpBasicAuthHeader: "Basic IV0EHq1OnNrj6gvRCwvFwTrZ1+z1oBbnQdiVC3otuq0= Ndd7LKvVBAaZIF0QAVi1ekCfAJXr1GGfLtRUXhgrF8c="
+
 # Solr pod liveness
 livenessProbe:
   initialDelaySeconds: 20
